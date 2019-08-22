@@ -31,7 +31,9 @@ SOURCES += \
 
 HEADERS += \
         fileloader.h \
-        mainwindow.h
+        mainwindow.h \
+        observer.h \
+        subject.h
 
 FORMS += \
         mainwindow.ui
