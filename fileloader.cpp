@@ -5,7 +5,7 @@
 void FileLoader::loadFile(){
     int size = 0, progressBar = 0;
     float totSize;
-    QFile file(":/files/resources/InstallationLog.txt");
+    QFile file(":/resources/resources/InstallationLog.txt");
 
     if(!file.open(QFile::ReadOnly | QFile::Text)){
     }
