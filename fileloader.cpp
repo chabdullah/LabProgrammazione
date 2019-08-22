@@ -37,8 +37,8 @@ void FileLoader::notify(int progress, QString line){
         observer->update(progress, line);
 }
 
-FileLoader::FileLoader(QString name){
-    name = "FileLoader";
+FileLoader::FileLoader(QString pname){
+    name = pname;
 }
 
 FileLoader::~FileLoader(){
