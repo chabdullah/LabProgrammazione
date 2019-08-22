@@ -2,11 +2,21 @@
 #include <iostream>
 #include "fileloader.h"
 
+FileLoader::FileLoader(QString pname, QString pFilePath){
+    name = pname;
+    filePath = pFilePath;
+}
+
+FileLoader::~FileLoader(){
+
+}
+
+
 void FileLoader::loadFile(){
     int size = 0, progressBar = 0;
     float totSize;
-    QFile file(":/resources/resources/InstallationLog.txt");
 
+    QFile file(filePath);
     if(!file.open(QFile::ReadOnly | QFile::Text)){
     }
     totSize = file.size();
@@ -21,7 +31,6 @@ void FileLoader::loadFile(){
 
     notify(100,QString("Completed!"));
     file.close();
-
 }
 
 void FileLoader::addObserver(Observer *o){
@@ -37,10 +46,3 @@ void FileLoader::notify(int progress, QString line){
         observer->update(progress, line);
 }
 
-FileLoader::FileLoader(QString pname){
-    name = pname;
-}
-
-FileLoader::~FileLoader(){
-
-}

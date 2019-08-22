@@ -14,7 +14,10 @@ int main(int argc, char *argv[])
     MainWindow m(fl) ;
     m.setWindowTitle("Loading File");
     m.show();
+    fl->setFilePath(":/resources/resources/InstallationLog.txt");
     fl->loadFile();
+
+
 
     return a.exec();
 }
