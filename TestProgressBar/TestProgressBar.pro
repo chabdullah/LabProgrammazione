@@ -6,4 +6,8 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES +=  tst_loadercase.cpp
+SOURCES +=  tst_loadercase.cpp \
+    testprogress.cpp
+
+HEADERS += \
+    testprogress.h

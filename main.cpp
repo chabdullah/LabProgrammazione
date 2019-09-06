@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "fileloader.h"
 #include <QApplication>
-#include <QThread>
 #include <iostream>
 #include <cstdlib>
 #include <QStatusBar>

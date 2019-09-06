@@ -15,8 +15,8 @@ class MainWindow : public QMainWindow, public Observer
 
 public:
     explicit MainWindow(FileLoader *fileLoader, QWidget *parent = nullptr);
-    void update(int progress, QString line);
-    ~MainWindow();
+    void update(int progress, QString line) override;
+    ~MainWindow() override;
 
 private:
     Ui::MainWindow *ui;

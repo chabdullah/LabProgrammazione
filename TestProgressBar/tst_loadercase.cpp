@@ -1,8 +1,11 @@
 #include <QtTest>
 
 
+#include "testprogress.h"
 #include "../fileloader.h"
 #include "../fileloader.cpp"
+
+
 
 class LoaderCase : public QObject
 {
@@ -17,6 +20,7 @@ private slots:
     void test_constructor_wo_filePath();
     void test_setFilePath();
     void test_setName();
+    void test_progress();
 
 };
 
@@ -48,14 +52,28 @@ void LoaderCase::test_setName()
     QVERIFY2(fl->getName() == "File Loader 2", "SetName non va bene");
 }
 
-
-LoaderCase::LoaderCase()
+void LoaderCase::test_progress()
 {
+    FileLoader* fl = new FileLoader("File Loader");
+    TestProgress tp(fl);
+    fl->setTotSize(50);
+
+    QVERIFY2(tp.getProgress() == 0, "Errore nell'inizializzazione del valore della progressBar");
+    fl->read("Riga uno");
+    QVERIFY2(tp.getProgress() == (8./(50))*100, "Errore nell'aggiornamento del valore della progressBar - Riga 1");
+    fl->read("Riga due");
+    QVERIFY2(tp.getProgress() == (16./(50))*100, "Errore nell'aggiornamento del valore della progressBar - Riga 2");
+    fl->read("Riga tre");
+    QVERIFY2(tp.getProgress() == (24./(50))*100, "Errore nell'aggiornamento del valore della progressBar - Riga 3");
+    fl->read("Nel mezzo del cammin di ..");
+    QVERIFY2(tp.getProgress() == (50./(50))*100, "Errore nell'aggiornamento del valore della progressBar - Riga 4");
+}
+
+LoaderCase::LoaderCase(){
 
 }
 
-LoaderCase::~LoaderCase()
-{
+LoaderCase::~LoaderCase(){
 
 }
 

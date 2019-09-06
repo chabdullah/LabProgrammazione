@@ -6,6 +6,8 @@ MainWindow::MainWindow(FileLoader* pfl, QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->progressBar->setValue(0);
     fileLoader = pfl;
     fileLoader->addObserver(this);
 

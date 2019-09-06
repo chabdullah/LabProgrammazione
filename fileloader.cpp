@@ -5,6 +5,9 @@
 FileLoader::FileLoader(QString pname, QString pFilePath){
     name = pname;
     filePath = pFilePath;
+    size = 0;
+    progressBar = 0;
+    totSize = 0;
 }
 
 FileLoader::~FileLoader(){
@@ -13,24 +16,23 @@ FileLoader::~FileLoader(){
 
 
 void FileLoader::loadFile(){
-    int size = 0, progressBar = 0;
-    float totSize;
-
     QFile file(filePath);
     if(!file.open(QFile::ReadOnly | QFile::Text)){
     }
-    totSize = file.size();
+    setTotSize(file.size());
     QTextStream in(&file);
     while (!in.atEnd())
        {
-          QString line = in.readLine();
-          size += line.size();
-          progressBar = ((size/totSize)*100);
-          notify(progressBar,line);
+          read(in.readLine());
        }
-
     notify(100,QString("Completed!"));
     file.close();
+}
+
+void FileLoader::read(QString line){
+    size += line.size();
+    progressBar = (int)((size/totSize)*100);
+    notify(progressBar,line);
 }
 
 void FileLoader::addObserver(Observer *o){
